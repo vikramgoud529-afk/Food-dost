@@ -1,2 +1,9 @@
-# Food-dost
-Your food your dost
+# FOOD DOST 🍔
+
+### Your Food, Your Dost!
+
+Delicious Food at Your Doorstep ❤️
+
+📍 Bhoiguda | Kavadiguda | Secunderabad
+
+🚀 Coming Soon!
