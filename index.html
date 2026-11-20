@@ -1,257 +1,152 @@
-018;
-}
-
-.cart h2 {
-  text-align: center;
-  color: #138b45;
-}
-
-.cart-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.quantity button {
-  background: #e8f5e9;
-  color: #138b45;
-  margin: 5px 3px 0 0;
-  padding: 6px 12px;
-  font-size: 17px;
-}
-
-.remove {
-  background: #dc3545;
-  color: white;
-  margin-top: 6px;
-}
-
-.total {
-  text-align: right;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 18px 0;
-}
-
-.customer-details {
-  margin-top: 20px;
-}
-
-.customer-details h3 {
-  color: #138b45;
-}
-
-.customer-details label {
-  display: block;
-  margin: 12px 0 5px;
-  font-weight: bold;
-}
-
-.customer-details input,
-.customer-details textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 15px;
-}
-
-.customer-details textarea {
-  min-height: 75px;
-  resize: vertical;
-}
-
-.order {
-  background: #138b45;
-  color: white;
-  width: 100%;
-  padding: 15px;
-  font-size: 17px;
-  font-weight: bold;
-  margin-top: 18px;
-}
-
-footer {
-  background: #138b45;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 20px;
-}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOOD DOST</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
+header{background:#138b45;color:white;text-align:center;padding:22px}
+header h1{margin:0;font-size:32px}
+.location{background:#e8f5e9;text-align:center;padding:12px;color:#166534;font-weight:bold}
+h2.heading{text-align:center;color:#138b45}
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px}
+.food-card{background:white;border-radius:12px;padding:14px 8px;text-align:center;box-shadow:0 2px 7px #0002}
+.food-icon{font-size:40px}
+.food-card h3{font-size:16px}
+.price{color:#138b45;font-weight:bold;margin:10px}
+button{border:0;border-radius:7px;padding:10px;cursor:pointer}
+.add{background:#138b45;color:white;width:100%}
+.cart{background:white;margin:14px;padding:16px;border-radius:12px}
+.cart h2{text-align:center;color:#138b45}
+.cart-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #ddd}
+.quantity button{background:#e8f5e9;color:#138b45;margin:5px 3px 0 0;font-size:17px}
+.remove{background:#dc3545;color:white;margin-top:6px}
+.total{text-align:right;font-size:20px;font-weight:bold;margin:18px 0}
+.customer-details label{display:block;margin:12px 0 5px;font-weight:bold}
+.customer-details input,.customer-details textarea{width:100%;padding:12px;border:1px solid #ccc;border-radius:7px;font-size:15px}
+.customer-details textarea{min-height:75px}
+.order{background:#138b45;color:white;width:100%;padding:15px;font-size:17px;font-weight:bold;margin-top:18px}
+footer{background:#138b45;color:white;text-align:center;padding:20px;margin-top:20px}
 </style>
 </head>
-
 <body>
 
 <header>
-  <h1>🍔 FOOD DOST</h1>
-  <p>Your Food, Your Dost!</p>
-  <p>Local Food. Fast Delivery. Friendly Prices.</p>
+<h1>🍔 FOOD DOST</h1>
+<p>Your Food, Your Dost!</p>
+<p>Local Food. Fast Delivery. Friendly Prices.</p>
 </header>
 
-<div class="location">
-  📍 Bhoiguda | Kavadiguda | Secunderabad
-</div>
+<div class="location">📍 Bhoiguda | Kavadiguda | Secunderabad</div>
 
 <h2 class="heading">🍽️ Our Food Menu</h2>
 
 <div class="menu">
+<div class="food-card">
+<div class="food-icon">🍗</div>
+<h3>Chicken Biryani</h3>
+<div class="price">₹180</div>
+<button class="add" onclick="addItem('Chicken Biryani',180)">Add to Cart</button>
+</div>
 
-  <div class="food-card">
-    <div class="food-icon">🍗</div>
-    <h3>Chicken Biryani</h3>
-    <div class="price">₹180</div>
-    <button class="add" onclick="addItem('Chicken Biryani',180)">
-      Add to Cart
-    </button>
-  </div>
+<div class="food-card">
+<div class="food-icon">🍚</div>
+<h3>Veg Biryani</h3>
+<div class="price">₹140</div>
+<button class="add" onclick="addItem('Veg Biryani',140)">Add to Cart</button>
+</div>
 
-  <div class="food-card">
-    <div class="food-icon">🍚</div>
-    <h3>Veg Biryani</h3>
-    <div class="price">₹140</div>
-    <button class="add" onclick="addItem('Veg Biryani',140)">
-      Add to Cart
-    </button>
-  </div>
+<div class="food-card">
+<div class="food-icon">🥞</div>
+<h3>Masala Dosa</h3>
+<div class="price">₹70</div>
+<button class="add" onclick="addItem('Masala Dosa',70)">Add to Cart</button>
+</div>
 
-  <div class="food-card">
-    <div class="food-icon">🥞</div>
-    <h3>Masala Dosa</h3>
-    <div class="price">₹70</div>
-    <button class="add" onclick="addItem('Masala Dosa',70)">
-      Add to Cart
-    </button>
-  </div>
+<div class="food-card">
+<div class="food-icon">🍛</div>
+<h3>Veg Meals</h3>
+<div class="price">₹120</div>
+<button class="add" onclick="addItem('Veg Meals',120)">Add to Cart</button>
+</div>
 
-  <div class="food-card">
-    <div class="food-icon">🍛</div>
-    <h3>Veg Meals</h3>
-    <div class="price">₹120</div>
-    <button class="add" onclick="addItem('Veg Meals',120)">
-      Add to Cart
-    </button>
-  </div>
+<div class="food-card">
+<div class="food-icon">🥘</div>
+<h3>Idli</h3>
+<div class="price">₹40</div>
+<button class="add" onclick="addItem('Idli',40)">Add to Cart</button>
+</div>
 
-  <div class="food-card">
-    <div class="food-icon">🥘</div>
-    <h3>Idli</h3>
-    <div class="price">₹40</div>
-    <button class="add" onclick="addItem('Idli',40)">
-      Add to Cart
-    </button>
-  </div>
-
-  <div class="food-card">
-    <div class="food-icon">🍗</div>
-    <h3>Chicken 65</h3>
-    <div class="price">₹150</div>
-    <button class="add" onclick="addItem('Chicken 65',150)">
-      Add to Cart
-    </button>
-  </div>
-
+<div class="food-card">
+<div class="food-icon">🍗</div>
+<h3>Chicken 65</h3>
+<div class="price">₹150</div>
+<button class="add" onclick="addItem('Chicken 65',150)">Add to Cart</button>
+</div>
 </div>
 
 <div class="cart">
-  <h2>🛒 Your Cart</h2>
+<h2>🛒 Your Cart</h2>
+<div id="cartItems">Your cart is empty.</div>
+<div class="total" id="total">Total: ₹0</div>
 
-  <div id="cartItems">
-    Your cart is empty.
-  </div>
+<div class="customer-details">
+<h3>📍 Customer Details</h3>
+<label for="customerName">Your Name</label>
+<input id="customerName" type="text" placeholder="Enter your name">
 
-  <div class="total" id="total">
-    Total: ₹0
-  </div>
+<label for="customerMobile">Mobile Number</label>
+<input id="customerMobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number">
 
-  <div class="customer-details">
-    <h3>📍 Customer Details</h3>
+<label for="customerAddress">Delivery Address</label>
+<textarea id="customerAddress" placeholder="Enter your full delivery address"></textarea>
+</div>
 
-    <label for="customerName">Your Name</label>
-    <input id="customerName" type="text"
-      placeholder="Enter your name">
-
-    <label for="customerMobile">Mobile Number</label>
-    <input id="customerMobile" type="tel"
-      inputmode="numeric" maxlength="10"
-      placeholder="Enter 10-digit mobile number">
-
-    <label for="customerAddress">Delivery Address</label>
-    <textarea id="customerAddress"
-      placeholder="Enter your full delivery address"></textarea>
-  </div>
-
-  <button class="order" onclick="placeOrder()">
-    Place Order on WhatsApp
-  </button>
+<button class="order" onclick="placeOrder()">Place Order on WhatsApp</button>
 </div>
 
 <footer>
-  <h3>FOOD DOST ❤️</h3>
-  <p>Your Food, Your Dost!</p>
-  <p>Thank you for choosing us.</p>
+<h3>FOOD DOST ❤️</h3>
+<p>Your Food, Your Dost!</p>
+<p>Thank you for choosing us.</p>
 </footer>
 
 <script>
-"use strict";
-
 let cart = [];
 
 function addItem(name, price) {
-  const existingItem = cart.find(
-    item => item.name === name
-  );
-
-  if (existingItem) {
-    existingItem.qty += 1;
+  let item = cart.find(x => x.name === name);
+  if (item) {
+    item.qty++;
   } else {
-    cart.push({
-      name: name,
-      price: price,
-      qty: 1
-    });
+    cart.push({name: name, price: price, qty: 1});
   }
-
   updateCart();
 }
 
 function increaseItem(name) {
-  const item = cart.find(
-    product => product.name === name
-  );
-
-  if (item) {
-    item.qty += 1;
-  }
-
+  let item = cart.find(x => x.name === name);
+  if (item) item.qty++;
   updateCart();
 }
 
 function decreaseItem(name) {
-  const item = cart.find(
-    product => product.name === name
-  );
-
+  let item = cart.find(x => x.name === name);
   if (item) {
-    item.qty -= 1;
-
+    item.qty--;
     if (item.qty <= 0) {
       removeItem(name);
       return;
     }
   }
-
   updateCart();
 }
 
 function removeItem(name) {
-  cart = cart.filter(
-    item => item.name !== name
-  );
-
+  cart = cart.filter(x => x.name !== name);
   updateCart();
 }
 
@@ -269,31 +164,24 @@ function updateCart() {
   let html = "";
 
   cart.forEach(item => {
-    const amount = item.price * item.qty;
+    let amount = item.price * item.qty;
     total += amount;
 
     html += `
       <div class="cart-row">
         <div>
-          <strong>${item.name}</strong>
-          <br>
+          <strong>${item.name}</strong><br>
           ₹${item.price} × ${item.qty}
           <div class="quantity">
             <button onclick="decreaseItem('${item.name}')">−</button>
             <button onclick="increaseItem('${item.name}')">+</button>
           </div>
         </div>
-
         <div>
-          <strong>₹${amount}</strong>
-          <br>
-          <button class="remove"
-            onclick="removeItem('${item.name}')">
-            Remove
-          </button>
+          <strong>₹${amount}</strong><br>
+          <button class="remove" onclick="removeItem('${item.name}')">Remove</button>
         </div>
-      </div>
-    `;
+      </div>`;
   });
 
   cartItems.innerHTML = html;
@@ -306,17 +194,12 @@ function placeOrder() {
     return;
   }
 
-  const customerName =
-    document.getElementById("customerName").value.trim();
+  const name = document.getElementById("customerName").value.trim();
+  const mobile = document.getElementById("customerMobile").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
 
-  const mobile =
-    document.getElementById("customerMobile").value.trim();
-
-  const address =
-    document.getElementById("customerAddress").value.trim();
-
-  if (!customerName || !mobile || !address) {
-    alert("Please enter your Name, Mobile Number and Delivery Address.");
+  if (!name || !mobile || !address) {
+    alert("Please enter your name, mobile number and address.");
     return;
   }
 
@@ -326,34 +209,24 @@ function placeOrder() {
   }
 
   const phone = "916281867743";
-
-  let message = "🍔 FOOD DOST - New Order\n\n";
-  message += "Customer: " + customerName + "\n";
+  let message = "FOOD DOST - New Order\n\n";
+  message += "Customer: " + name + "\n";
   message += "Mobile: " + mobile + "\n";
-  message += "Delivery Address: " + address + "\n\n";
+  message += "Address: " + address + "\n\n";
 
   cart.forEach(item => {
     message += item.name + " x " + item.qty;
     message += " = ₹" + (item.price * item.qty) + "\n";
   });
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
-
+  let total = cart.reduce((sum,item) => sum + item.price * item.qty,0);
   message += "\nTotal: ₹" + total;
   message += "\n\nPlease confirm my order.";
 
-  const whatsappURL =
-    "https://wa.me/" + phone +
-    "?text=" + encodeURIComponent(message);
-
-  window.location.href = whatsappURL;
+  window.location.href = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 }
 
 updateCart();
 </script>
-
 </body>
 </html>
