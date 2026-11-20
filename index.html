@@ -244,40 +244,37 @@ function removeItem(name) {
   updateCart();
 }
 
-function updateCart() {
-  let box = document.getElementById("cartItems");
-  let total = 0;
-
-  if (cart.length === 0) {
-    box.innerHTML = "Your cart is empty.";
-  } else {
-    box.innerHTML = cart.map(item => {
-      total += item.price * item.qty;
-
-      return `
-        <div class="cart-row">
-          <span>${item.name} × ${item.qty}</span>
-          <span>₹${item.price * item.qty}</span>
-          <button class="remove"
-            onclick="removeItem('${item.name}')">Remove</button>
-        </div>
-      `;
-    }).join("");
-  }
-
-  document.getElementById("total").innerText = "Total: ₹" + total;
-}
-
 function placeOrder() {
+
   if (cart.length === 0) {
+
     alert("Please add food items to your cart!");
+
     return;
+
   }
 
-  alert("This is a demo website. Online ordering is not connected yet.");
-}
-</script>
+  const phone = "91XXXXXXXXXX"; // Mee FOOD DOST WhatsApp number
 
-</body>
-</html>
+  let message = "Hello FOOD DOST! I want to order:\n\n";
+
+  cart.forEach(item => {
+
+    message += `${item.name} x ${item.quantity} = ₹${item.price * item.quantity}\n`;
+
+  });
+
+  message += `\nTotal: ₹${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}`;
+
+  message += "\n\nPlease confirm my order.";
+
+  window.open(
+
+    "https://wa.me/" + phone + "?text=" + encodeURIComponent(message),
+
+    "_blank"
+
+  );
+
+}
 
