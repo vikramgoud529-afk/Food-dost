@@ -1,49 +1,283 @@
+
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>FOOD DOST - Your Food, Your Dost!</title>
 
 <style>
-
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
-
   margin: 0;
-
   font-family: Arial, sans-serif;
-
   background: #fff8ef;
-
   color: #222;
-
 }
 
 header {
-
   background: #16833c;
-
   color: white;
-
   text-align: center;
-
   padding: 25px 12px;
-
 }
 
-header h1 { margin: 0; font-size: 32px; }
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
 
-header p { margin: 8px 0 0; }
+header p {
+  margin: 8px 0 0;
+}
 
 .area {
-
   background: #e8f5e9;
+  text-align: center;
+  padding: 12px;
+  color: #166534;
+  font-weight: bold;
+}
 
-  text-align
+.heading {
+  text-align: center;
+  padding: 20px 10px 5px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 15px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.item {
+  background: white;
+  border-radius: 12px;
+  padding: 15px 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+.food {
+  font-size: 48px;
+}
+
+.item h3 {
+  margin: 8px 0;
+}
+
+.price {
+  color: #16833c;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+button {
+  background: #16833c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+button.remove {
+  background: #d32f2f;
+  padding: 5px 10px;
+}
+
+.cart {
+  background: white;
+  margin: 15px;
+  padding: 18px;
+  border-radius: 12px;
+  max-width: 770px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 8px #ddd;
+}
+
+.cart h2 {
+  color: #16833c;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.order {
+  width: 100%;
+  font-size: 18px;
+  padding: 14px;
+}
+
+footer {
+  background: #16833c;
+  color: white;
+  text-align: center;
+  padding: 18px;
+  margin-top: 25px;
+}
+
+@media (max-width: 400px) {
+  .menu {
+    gap: 9px;
+    padding: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍔 FOOD DOST</h1>
+  <p>Your Food, Your Dost!</p>
+  <p>Local Food. Fast Delivery. Friendly Prices.</p>
+</header>
+
+<div class="area">
+  📍 Bhoiguda | Kavadiguda | Secunderabad
+</div>
+
+<div class="heading">
+  <h2>🍽️ Our Food Menu</h2>
+  <p>Delicious food at your doorstep!</p>
+</div>
+
+<div class="menu">
+
+  <div class="item">
+    <div class="food">🍗</div>
+    <h3>Chicken Biryani</h3>
+    <div class="price">₹180</div>
+    <button onclick="addItem('Chicken Biryani',180)">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <div class="food">🍚</div>
+    <h3>Veg Biryani</h3>
+    <div class="price">₹140</div>
+    <button onclick="addItem('Veg Biryani',140)">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <div class="food">🥞</div>
+    <h3>Masala Dosa</h3>
+    <div class="price">₹70</div>
+    <button onclick="addItem('Masala Dosa',70)">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <div class="food">🍛</div>
+    <h3>Veg Meals</h3>
+    <div class="price">₹120</div>
+    <button onclick="addItem('Veg Meals',120)">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <div class="food">🥘</div>
+    <h3>Idli</h3>
+    <div class="price">₹40</div>
+    <button onclick="addItem('Idli',40)">Add to Cart</button>
+  </div>
+
+  <div class="item">
+    <div class="food">🍗</div>
+    <h3>Chicken 65</h3>
+    <div class="price">₹150</div>
+    <button onclick="addItem('Chicken 65',150)">Add to Cart</button>
+  </div>
+
+</div>
+
+<div class="cart">
+  <h2>🛒 Your Cart</h2>
+  <div id="cartItems">Your cart is empty.</div>
+  <div class="total" id="total">Total: ₹0</div>
+  <button class="order" onclick="placeOrder()">Place Order</button>
+</div>
+
+<footer>
+  <h3>FOOD DOST ❤️</h3>
+  <p>Your Food, Your Dost!</p>
+  <p>Serving Bhoiguda, Kavadiguda & Secunderabad</p>
+  <p>© 2026 FOOD DOST</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addItem(name, price) {
+  let item = cart.find(x => x.name === name);
+
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({name: name, price: price, qty: 1});
+  }
+
+  updateCart();
+}
+
+function removeItem(name) {
+  cart = cart.filter(x => x.name !== name);
+  updateCart();
+}
+
+function updateCart() {
+  let box = document.getElementById("cartItems");
+  let total = 0;
+
+  if (cart.length === 0) {
+    box.innerHTML = "Your cart is empty.";
+  } else {
+    box.innerHTML = cart.map(item => {
+      total += item.price * item.qty;
+
+      return `
+        <div class="cart-row">
+          <span>${item.name} × ${item.qty}</span>
+          <span>₹${item.price * item.qty}</span>
+          <button class="remove"
+            onclick="removeItem('${item.name}')">Remove</button>
+        </div>
+      `;
+    }).join("");
+  }
+
+  document.getElementById("total").innerText = "Total: ₹" + total;
+}
+
+function placeOrder() {
+  if (cart.length === 0) {
+    alert("Please add food items to your cart!");
+    return;
+  }
+
+  alert("This is a demo website. Online ordering is not connected yet.");
+}
+</script>
+
+</body>
+</html>
+
