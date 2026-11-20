@@ -14,15 +14,15 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #fff8ef;
+  background: #f5f5f5;
   color: #222;
 }
 
 header {
-  background: #16833c;
+  background: #138b45;
   color: white;
   text-align: center;
-  padding: 25px 12px;
+  padding: 22px 10px;
 }
 
 header h1 {
@@ -34,7 +34,7 @@ header p {
   margin: 8px 0 0;
 }
 
-.area {
+.location {
   background: #e8f5e9;
   text-align: center;
   padding: 12px;
@@ -44,69 +44,65 @@ header p {
 
 .heading {
   text-align: center;
-  padding: 20px 10px 5px;
+  margin: 22px 0 10px;
+  color: #138b45;
 }
 
 .menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  padding: 15px;
-  max-width: 800px;
-  margin: auto;
+  gap: 12px;
+  padding: 12px;
 }
 
-.item {
+.food-card {
   background: white;
   border-radius: 12px;
-  padding: 15px 10px;
+  padding: 14px 8px;
   text-align: center;
-  box-shadow: 0 2px 8px #ddd;
+  box-shadow: 0 2px 7px #00000018;
 }
 
-.food {
-  font-size: 48px;
+.food-card .food-icon {
+  font-size: 42px;
 }
 
-.item h3 {
+.food-card h3 {
+  font-size: 16px;
   margin: 8px 0;
 }
 
 .price {
-  color: #16833c;
+  color: #138b45;
   font-weight: bold;
-  font-size: 19px;
+  margin: 8px;
 }
 
 button {
-  background: #16833c;
-  color: white;
   border: none;
-  padding: 10px 15px;
   border-radius: 7px;
-  font-size: 15px;
+  padding: 10px 12px;
+  font-size: 14px;
   cursor: pointer;
-  margin-top: 8px;
 }
 
-button.remove {
-  background: #d32f2f;
-  padding: 5px 10px;
+.add {
+  background: #138b45;
+  color: white;
+  width: 100%;
 }
 
 .cart {
   background: white;
-  margin: 15px;
-  padding: 18px;
+  margin: 14px;
+  padding: 16px;
   border-radius: 12px;
-  max-width: 770px;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0 2px 8px #ddd;
+  box-shadow: 0 2px 7px #00000018;
 }
 
 .cart h2 {
-  color: #16833c;
+  color: #138b45;
+  text-align: center;
 }
 
 .cart-row {
@@ -114,35 +110,46 @@ button.remove {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  border-bottom: 1px solid #eee;
-  padding: 8px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.quantity button {
+  background: #e8f5e9;
+  color: #138b45;
+  padding: 5px 9px;
+  margin: 2px;
+}
+
+.remove {
+  background: #dc3545;
+  color: white;
+  padding: 6px 8px;
+  margin-top: 5px;
 }
 
 .total {
-  font-size: 22px;
+  text-align: right;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 15px;
+  margin: 18px 0;
 }
 
 .order {
+  background: #138b45;
+  color: white;
   width: 100%;
-  font-size: 18px;
   padding: 14px;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 footer {
-  background: #16833c;
+  background: #138b45;
   color: white;
   text-align: center;
   padding: 18px;
-  margin-top: 25px;
-}
-
-@media (max-width: 400px) {
-  .menu {
-    gap: 9px;
-    padding: 10px;
-  }
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -155,75 +162,91 @@ footer {
   <p>Local Food. Fast Delivery. Friendly Prices.</p>
 </header>
 
-<div class="area">
+<div class="location">
   📍 Bhoiguda | Kavadiguda | Secunderabad
 </div>
 
-<div class="heading">
-  <h2>🍽️ Our Food Menu</h2>
-  <p>Delicious food at your doorstep!</p>
-</div>
+<h2 class="heading">🍽️ Our Food Menu</h2>
 
 <div class="menu">
 
-  <div class="item">
-    <div class="food">🍗</div>
+  <div class="food-card">
+    <div class="food-icon">🍗</div>
     <h3>Chicken Biryani</h3>
     <div class="price">₹180</div>
-    <button onclick="addItem('Chicken Biryani',180)">Add to Cart</button>
+    <button class="add" onclick="addItem('Chicken Biryani',180)">
+      Add to Cart
+    </button>
   </div>
 
-  <div class="item">
-    <div class="food">🍚</div>
+  <div class="food-card">
+    <div class="food-icon">🍚</div>
     <h3>Veg Biryani</h3>
     <div class="price">₹140</div>
-    <button onclick="addItem('Veg Biryani',140)">Add to Cart</button>
+    <button class="add" onclick="addItem('Veg Biryani',140)">
+      Add to Cart
+    </button>
   </div>
 
-  <div class="item">
-    <div class="food">🥞</div>
+  <div class="food-card">
+    <div class="food-icon">🥞</div>
     <h3>Masala Dosa</h3>
     <div class="price">₹70</div>
-    <button onclick="addItem('Masala Dosa',70)">Add to Cart</button>
+    <button class="add" onclick="addItem('Masala Dosa',70)">
+      Add to Cart
+    </button>
   </div>
 
-  <div class="item">
-    <div class="food">🍛</div>
+  <div class="food-card">
+    <div class="food-icon">🍛</div>
     <h3>Veg Meals</h3>
     <div class="price">₹120</div>
-    <button onclick="addItem('Veg Meals',120)">Add to Cart</button>
+    <button class="add" onclick="addItem('Veg Meals',120)">
+      Add to Cart
+    </button>
   </div>
 
-  <div class="item">
-    <div class="food">🥘</div>
+  <div class="food-card">
+    <div class="food-icon">🥘</div>
     <h3>Idli</h3>
     <div class="price">₹40</div>
-    <button onclick="addItem('Idli',40)">Add to Cart</button>
+    <button class="add" onclick="addItem('Idli',40)">
+      Add to Cart
+    </button>
   </div>
 
-  <div class="item">
-    <div class="food">🍗</div>
+  <div class="food-card">
+    <div class="food-icon">🍗</div>
     <h3>Chicken 65</h3>
     <div class="price">₹150</div>
-    <button onclick="addItem('Chicken 65',150)">Add to Cart</button>
+    <button class="add" onclick="addItem('Chicken 65',150)">
+      Add to Cart
+    </button>
   </div>
 
 </div>
 
 <div class="cart">
   <h2>🛒 Your Cart</h2>
-  <div id="cartItems">Your cart is empty.</div>
-  <div class="total" id="total">Total: ₹0</div>
-  <button class="order" onclick="placeOrder()">Place Order</button>
+
+  <div id="cartItems">
+    Your cart is empty.
+  </div>
+
+  <div class="total" id="total">
+    Total: ₹0
+  </div>
+
+  <button class="order" onclick="placeOrder()">
+    Place Order on WhatsApp
+  </button>
 </div>
 
 <footer>
   <h3>FOOD DOST ❤️</h3>
   <p>Your Food, Your Dost!</p>
-  <p>Serving Bhoiguda, Kavadiguda & Secunderabad</p>
-  <p>© 2026 FOOD DOST</p>
+  <p>Thank you for choosing us.</p>
 </footer>
-
 
 <script>
 let cart = [];
@@ -234,7 +257,35 @@ function addItem(name, price) {
   if (item) {
     item.qty++;
   } else {
-    cart.push({name: name, price: price, qty: 1});
+    cart.push({
+      name: name,
+      price: price,
+      qty: 1
+    });
+  }
+
+  updateCart();
+}
+
+function increaseItem(name) {
+  let item = cart.find(x => x.name === name);
+
+  if (item) {
+    item.qty++;
+  }
+
+  updateCart();
+}
+
+function decreaseItem(name) {
+  let item = cart.find(x => x.name === name);
+
+  if (item) {
+    item.qty--;
+
+    if (item.qty <= 0) {
+      cart = cart.filter(x => x.name !== name);
+    }
   }
 
   updateCart();
@@ -264,14 +315,24 @@ function updateCart() {
 
     html += `
       <div class="cart-row">
-        <span>${item.name} × ${item.qty}</span>
-        <span>
-          ₹${amount}
+        <div>
+          <strong>${item.name}</strong>
+          <br>
+          ₹${item.price} × ${item.qty}
+          <div class="quantity">
+            <button onclick="decreaseItem('${item.name}')">−</button>
+            <button onclick="increaseItem('${item.name}')">+</button>
+          </div>
+        </div>
+
+        <div>
+          <strong>₹${amount}</strong>
+          <br>
           <button class="remove"
             onclick="removeItem('${item.name}')">
             Remove
           </button>
-        </span>
+        </div>
       </div>
     `;
   });
@@ -291,25 +352,27 @@ function placeOrder() {
   let message = "Hello FOOD DOST! I want to order:\n\n";
 
   cart.forEach(item => {
-    message += item.name + " x " + item.qty +
-      " = ₹" + (item.price * item.qty) + "\n";
+    message += item.name + " x " + item.qty;
+    message += " = ₹" + (item.price * item.qty) + "\n";
   });
 
   let total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty, 0
+    (sum, item) => sum + item.price * item.qty,
+    0
   );
 
   message += "\nTotal: ₹" + total;
   message += "\n\nPlease confirm my order.";
 
-  window.open(
-    "https://wa.me/" + phone + "?text=" +
-    encodeURIComponent(message),
-    "_blank"
-  );
+  const url = "https://wa.me/" + phone +
+    "?text=" + encodeURIComponent(message);
+
+  window.location.href = url;
 }
 </script>
+
 </body>
 </html>
+
 
 
