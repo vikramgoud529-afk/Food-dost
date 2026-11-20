@@ -1,108 +1,9 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FOOD DOST - Your Food, Your Dost!</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #222;
-}
-
-header {
-  background: #138b45;
-  color: white;
-  text-align: center;
-  padding: 22px 10px;
-}
-
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin: 8px 0 0;
-}
-
-.location {
-  background: #e8f5e9;
-  text-align: center;
-  padding: 12px;
-  color: #166534;
-  font-weight: bold;
-}
-
-.heading {
-  text-align: center;
-  margin: 22px 0 10px;
-  color: #138b45;
-}
-
-.menu {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 12px;
-}
-
-.food-card {
-  background: white;
-  border-radius: 12px;
-  padding: 14px 8px;
-  text-align: center;
-  box-shadow: 0 2px 7px #00000018;
-}
-
-.food-card .food-icon {
-  font-size: 42px;
-}
-
-.food-card h3 {
-  font-size: 16px;
-  margin: 8px 0;
-}
-
-.price {
-  color: #138b45;
-  font-weight: bold;
-  margin: 8px;
-}
-
-button {
-  border: none;
-  border-radius: 7px;
-  padding: 10px 12px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.add {
-  background: #138b45;
-  color: white;
-  width: 100%;
-}
-
-.cart {
-  background: white;
-  margin: 14px;
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 2px 7px #00000018;
+018;
 }
 
 .cart h2 {
-  color: #138b45;
   text-align: center;
+  color: #138b45;
 }
 
 .cart-row {
@@ -110,22 +11,22 @@ button {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid #ddd;
 }
 
 .quantity button {
   background: #e8f5e9;
   color: #138b45;
-  padding: 5px 9px;
-  margin: 2px;
+  margin: 5px 3px 0 0;
+  padding: 6px 12px;
+  font-size: 17px;
 }
 
 .remove {
   background: #dc3545;
   color: white;
-  padding: 6px 8px;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .total {
@@ -135,20 +36,49 @@ button {
   margin: 18px 0;
 }
 
+.customer-details {
+  margin-top: 20px;
+}
+
+.customer-details h3 {
+  color: #138b45;
+}
+
+.customer-details label {
+  display: block;
+  margin: 12px 0 5px;
+  font-weight: bold;
+}
+
+.customer-details input,
+.customer-details textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.customer-details textarea {
+  min-height: 75px;
+  resize: vertical;
+}
+
 .order {
   background: #138b45;
   color: white;
   width: 100%;
-  padding: 14px;
+  padding: 15px;
   font-size: 17px;
   font-weight: bold;
+  margin-top: 18px;
 }
 
 footer {
   background: #138b45;
   color: white;
   text-align: center;
-  padding: 18px;
+  padding: 20px;
   margin-top: 20px;
 }
 </style>
@@ -237,6 +167,23 @@ footer {
     Total: ₹0
   </div>
 
+  <div class="customer-details">
+    <h3>📍 Customer Details</h3>
+
+    <label for="customerName">Your Name</label>
+    <input id="customerName" type="text"
+      placeholder="Enter your name">
+
+    <label for="customerMobile">Mobile Number</label>
+    <input id="customerMobile" type="tel"
+      inputmode="numeric" maxlength="10"
+      placeholder="Enter 10-digit mobile number">
+
+    <label for="customerAddress">Delivery Address</label>
+    <textarea id="customerAddress"
+      placeholder="Enter your full delivery address"></textarea>
+  </div>
+
   <button class="order" onclick="placeOrder()">
     Place Order on WhatsApp
   </button>
@@ -249,13 +196,17 @@ footer {
 </footer>
 
 <script>
+"use strict";
+
 let cart = [];
 
 function addItem(name, price) {
-  let item = cart.find(x => x.name === name);
+  const existingItem = cart.find(
+    item => item.name === name
+  );
 
-  if (item) {
-    item.qty++;
+  if (existingItem) {
+    existingItem.qty += 1;
   } else {
     cart.push({
       name: name,
@@ -268,23 +219,28 @@ function addItem(name, price) {
 }
 
 function increaseItem(name) {
-  let item = cart.find(x => x.name === name);
+  const item = cart.find(
+    product => product.name === name
+  );
 
   if (item) {
-    item.qty++;
+    item.qty += 1;
   }
 
   updateCart();
 }
 
 function decreaseItem(name) {
-  let item = cart.find(x => x.name === name);
+  const item = cart.find(
+    product => product.name === name
+  );
 
   if (item) {
-    item.qty--;
+    item.qty -= 1;
 
     if (item.qty <= 0) {
-      cart = cart.filter(x => x.name !== name);
+      removeItem(name);
+      return;
     }
   }
 
@@ -292,7 +248,10 @@ function decreaseItem(name) {
 }
 
 function removeItem(name) {
-  cart = cart.filter(x => x.name !== name);
+  cart = cart.filter(
+    item => item.name !== name
+  );
+
   updateCart();
 }
 
@@ -301,8 +260,8 @@ function updateCart() {
   const totalElement = document.getElementById("total");
 
   if (cart.length === 0) {
-    cartItems.innerHTML = "Your cart is empty.";
-    totalElement.innerHTML = "Total: ₹0";
+    cartItems.textContent = "Your cart is empty.";
+    totalElement.textContent = "Total: ₹0";
     return;
   }
 
@@ -310,7 +269,7 @@ function updateCart() {
   let html = "";
 
   cart.forEach(item => {
-    let amount = item.price * item.qty;
+    const amount = item.price * item.qty;
     total += amount;
 
     html += `
@@ -338,21 +297,47 @@ function updateCart() {
   });
 
   cartItems.innerHTML = html;
-  totalElement.innerHTML = "Total: ₹" + total;
+  totalElement.textContent = "Total: ₹" + total;
 }
-FOOD DOST – Your Food, Your Dost!⁠￼
+
+function placeOrder() {
+  if (cart.length === 0) {
+    alert("Please add food items to your cart!");
+    return;
+  }
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const mobile =
+    document.getElementById("customerMobile").value.trim();
+
+  const address =
+    document.getElementById("customerAddress").value.trim();
+
+  if (!customerName || !mobile || !address) {
+    alert("Please enter your Name, Mobile Number and Delivery Address.");
+    return;
+  }
+
+  if (!/^[0-9]{10}$/.test(mobile)) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
   }
 
   const phone = "916281867743";
 
-  let message = "Hello FOOD DOST! I want to order:\n\n";
+  let message = "🍔 FOOD DOST - New Order\n\n";
+  message += "Customer: " + customerName + "\n";
+  message += "Mobile: " + mobile + "\n";
+  message += "Delivery Address: " + address + "\n\n";
 
   cart.forEach(item => {
     message += item.name + " x " + item.qty;
     message += " = ₹" + (item.price * item.qty) + "\n";
   });
 
-  let total = cart.reduce(
+  const total = cart.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
@@ -360,15 +345,15 @@ FOOD DOST – Your Food, Your Dost!⁠￼
   message += "\nTotal: ₹" + total;
   message += "\n\nPlease confirm my order.";
 
-  const url = "https://wa.me/" + phone +
+  const whatsappURL =
+    "https://wa.me/" + phone +
     "?text=" + encodeURIComponent(message);
 
-  window.location.href = url;
+  window.location.href = whatsappURL;
 }
+
+updateCart();
 </script>
 
 </body>
 </html>
-
-
-
